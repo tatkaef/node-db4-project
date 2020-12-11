@@ -10,12 +10,13 @@ exports.up = function(knex) {
 
     .createTable('ingredients', tbl => {
               tbl.increments('ingredient_id')
-              tbl.string('ingredient_name', 128).notNullable().unique()          
+              tbl.string('ingredient_name', 128).notNullable()
+              tbl.decimal('quantities').notNullable()         
     })
 
     .createTable('recipes_ingredients', tbl => {
               tbl.increments()
-              tbl.integer('precipe_id', 128)
+              tbl.integer('recipe_id', 128)
                 .notNullable().unsigned()
                 .references('recipe_id').inTable('recipes')
                 .onDelete('RESTRICT').onUpdate('RESTRICT')
